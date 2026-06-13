@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="color-scheme" content="light">
+  <title>Greece Trip Itinerary</title>
+  
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" href="./assets/icon-512.png">
+  
+  <link rel="stylesheet" href="./style.css">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-content">
+      <h1>Greece Trip</h1>
+      <p>July 26 - Aug 2, 2026</p>
+      <button id="export-btn" class="header-btn">Export Data</button>
+    </div>
+  </header>
+
+  <main class="itinerary-timeline" id="itinerary-container">
+    <!-- Timeline items will be injected here by app.js -->
+  </main>
+
+  <button class="fab" id="add-event-btn" aria-label="Add Event">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+  </button>
+
+  <dialog id="event-dialog" class="sleek-dialog">
+    <form id="event-form" method="dialog">
+      <h2 id="dialog-title">Add Event</h2>
+      
+      <input type="hidden" id="event-id">
+      
+      <div class="form-group">
+        <label for="event-type">Type</label>
+        <select id="event-type" required>
+          <option value="flight">Flight</option>
+          <option value="hotel">Hotel</option>
+          <option value="ferry">Ferry</option>
+          <option value="car">Car Rental</option>
+          <option value="activity">Activity</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="event-title">Title</label>
+        <input type="text" id="event-title" required placeholder="e.g. Flight SOF ➔ ATH">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event-date">Date</label>
+          <input type="date" id="event-date" required>
+        </div>
+        <div class="form-group">
+          <label for="event-time">Time</label>
+          <input type="text" id="event-time" placeholder="e.g. 14:00 or Afternoon">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="event-desc">Description</label>
+        <textarea id="event-desc" rows="2" placeholder="Flight GQ681..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="event-location">Location Name</label>
+        <input type="text" id="event-location" placeholder="e.g. Vathy, Sifnos">
+      </div>
+
+      <div class="form-group">
+        <label for="event-map">Google Maps Link</label>
+        <input type="url" id="event-map" placeholder="https://maps.google.com/?q=...">
+      </div>
+
+      <div class="form-group">
+        <label for="event-contacts">Contacts / Extra Info</label>
+        <input type="text" id="event-contacts" placeholder="e.g. Phone: +30 123456">
+      </div>
+
+      <div class="form-group">
+        <label>Documents</label>
+        <div id="docs-container"></div>
+        <button type="button" class="action-btn" id="add-doc-btn" style="margin-top: 0.5rem; width: max-content;">+ Add Document</button>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="btn-cancel" id="cancel-btn">Cancel</button>
+        <button type="submit" class="btn-save">Save Event</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Hidden dialog for displaying exported data -->
+  <dialog id="export-dialog" class="sleek-dialog">
+    <div class="export-content">
+      <h2>Exported Data</h2>
+      <p>Copy this JSON into your <code>data.js</code> file if you want to update the original file.</p>
+      <textarea id="export-textarea" rows="10" readonly></textarea>
+      <div class="dialog-actions">
+        <button type="button" class="btn-cancel" id="close-export-btn">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
