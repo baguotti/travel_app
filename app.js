@@ -19,6 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (storedData) {
     try {
       events = JSON.parse(storedData);
+      
+      // Merge new fields from window.itineraryData (like cost) into existing localStorage data
+      if (window.itineraryData) {
+        events = events.map(localEvent => {
+          const freshEvent = window.itineraryData.find(e => e.id === localEvent.id);
+          if (freshEvent && localEvent.cost === undefined) {
+            localEvent.cost = freshEvent.cost;
+          }
+          return localEvent;
+        });
+        saveData(); // Save the merged data back
+      }
+      
     } catch(e) {
       events = window.itineraryData || [];
     }

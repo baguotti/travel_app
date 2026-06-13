@@ -155,7 +155,7 @@ const itineraryData = [
       { name: "Airbnb", url: "./documents/08_Hotel_Athens_Airbnb_2026-07-31_to_2026-08-02.pdf" }
     ],
     contacts: "Host: Nathalie (Self check-in with Lockbox)",
-    cost: 0,
+    cost: 117,
     completed: false
   },
   {
