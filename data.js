@@ -13,6 +13,7 @@ const itineraryData = [
       { name: "Invoice", url: "./documents/01_Flight_SOF-ATH-SOF_Invoice_SKYexpress.pdf" }
     ],
     contacts: "Confirmation: B4D6DX",
+    cost: 295.22,
     completed: false
   },
   {
@@ -28,6 +29,7 @@ const itineraryData = [
       { name: "Booking", url: "./documents/03_Hotel_Piraeus_Delfini_2026-07-26.pdf" }
     ],
     contacts: "Phone: +30 21 0417 3110",
+    cost: 54,
     completed: false
   },
   {
@@ -43,6 +45,7 @@ const itineraryData = [
       { name: "Tickets", url: "./documents/04_Ferry_Roundtrip_Athens-Sifnos_Tickets.pdf" }
     ],
     contacts: "Ferryhopper code: FH54SX8397YK",
+    cost: 261.06,
     completed: false
   },
   {
@@ -58,6 +61,7 @@ const itineraryData = [
       { name: "Reservation", url: "./documents/06_CarRental_Sifnos_Podotas_Fiat500.pdf" }
     ],
     contacts: "Order: 1444",
+    cost: 260,
     completed: false
   },
   {
@@ -73,6 +77,7 @@ const itineraryData = [
       { name: "Booking", url: "./documents/05_Hotel_Sifnos_Archipelago_2026-07-27_to_2026-07-30.pdf" }
     ],
     contacts: "Phone: +30 693 740 0450",
+    cost: 643.5,
     completed: false
   },
   {
@@ -86,6 +91,7 @@ const itineraryData = [
     mapLink: "https://maps.google.com/?q=36.9334167,24.6885667",
     docs: [],
     contacts: "",
+    cost: 0,
     completed: false
   },
   {
@@ -101,6 +107,7 @@ const itineraryData = [
       { name: "Booking", url: "./documents/07_Hotel_Sifnos_Mirtia_2026-07-30_to_2026-07-31.pdf" }
     ],
     contacts: "Phone: +30 698 857 9746",
+    cost: 99.2,
     completed: false
   },
   {
@@ -116,6 +123,7 @@ const itineraryData = [
       { name: "Reservation", url: "./documents/06_CarRental_Sifnos_Podotas_Fiat500.pdf" }
     ],
     contacts: "Order: 1444",
+    cost: 0,
     completed: false
   },
   {
@@ -131,6 +139,7 @@ const itineraryData = [
       { name: "Tickets", url: "./documents/04_Ferry_Roundtrip_Athens-Sifnos_Tickets.pdf" }
     ],
     contacts: "Ferryhopper code: FH54SX8397YK",
+    cost: 0,
     completed: false
   },
   {
@@ -146,6 +155,7 @@ const itineraryData = [
       { name: "Airbnb", url: "./documents/08_Hotel_Athens_Airbnb_2026-07-31_to_2026-08-02.pdf" }
     ],
     contacts: "Host: Nathalie (Self check-in with Lockbox)",
+    cost: 0,
     completed: false
   },
   {
@@ -159,6 +169,7 @@ const itineraryData = [
     mapLink: "https://maps.google.com/?q=Kinourias+8,+Athens",
     docs: [],
     contacts: "",
+    cost: 0,
     completed: false
   },
   {
@@ -174,6 +185,7 @@ const itineraryData = [
       { name: "Ticket", url: "./documents/02_Flight_SOF-ATH-SOF_Ticket_B4D6DX.pdf" }
     ],
     contacts: "Confirmation: B4D6DX",
+    cost: 0,
     completed: false
   }
 ];

@@ -27,6 +27,69 @@ document.addEventListener('DOMContentLoaded', () => {
     saveData();
   }
 
+  // Tab switching logic
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active from all
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      
+      // Add active to clicked
+      btn.classList.add('active');
+      document.getElementById(`${btn.dataset.tab}-container`).classList.add('active');
+    });
+  });
+
+  function renderCosts() {
+    const costsContainer = document.getElementById('costs-container');
+    if (!costsContainer) return;
+    
+    let total = 0;
+    const categoryTotals = {
+      flight: 0,
+      hotel: 0,
+      ferry: 0,
+      car: 0,
+      activity: 0,
+      other: 0
+    };
+
+    events.forEach(event => {
+      const cost = parseFloat(event.cost) || 0;
+      total += cost;
+      if (categoryTotals[event.type] !== undefined) {
+        categoryTotals[event.type] += cost;
+      } else {
+        categoryTotals.other += cost;
+      }
+    });
+
+    costsContainer.innerHTML = `
+      <div class="cost-total-card">
+        <h2>Total Estimated Cost</h2>
+        <div class="grand-total">€${total.toFixed(2)}</div>
+      </div>
+      <div class="cost-breakdown">
+        ${Object.entries(categoryTotals)
+          .filter(([_, amount]) => amount > 0)
+          .map(([type, amount]) => `
+            <div class="cost-category">
+              <div class="category-name">
+                <div class="event-icon-wrapper" style="width: 40px; height: 40px;">
+                  ${getIcon(type)}
+                </div>
+                <span style="text-transform: capitalize;">${type}</span>
+              </div>
+              <div class="category-amount">€${amount.toFixed(2)}</div>
+            </div>
+          `).join('')}
+      </div>
+    `;
+  }
+
   function saveData() {
     events.sort((a, b) => {
       const dateA = new Date(a.date);
@@ -153,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.delete-btn').forEach(btn => {
       btn.addEventListener('click', (e) => deleteEvent(e.target.dataset.id));
     });
+
+    // Update costs view
+    renderCosts();
   }
 
   function deleteEvent(id) {
@@ -202,6 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('event-location').value = event.location || '';
     document.getElementById('event-map').value = event.mapLink || '';
     document.getElementById('event-contacts').value = event.contacts || '';
+    document.getElementById('event-cost').value = event.cost || '';
     
     renderDocsInputs(event.docs || []);
     
@@ -212,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dialogTitle.textContent = 'Add Event';
     form.reset();
     document.getElementById('event-id').value = '';
+    document.getElementById('event-cost').value = '';
     renderDocsInputs([]);
     dialog.showModal();
   }
@@ -246,6 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
       location: document.getElementById('event-location').value,
       mapLink: document.getElementById('event-map').value,
       contacts: document.getElementById('event-contacts').value,
+      cost: parseFloat(document.getElementById('event-cost').value) || 0,
       docs: collectedDocs
     };
 

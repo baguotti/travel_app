@@ -26,8 +26,17 @@
     </div>
   </header>
 
-  <main class="itinerary-timeline" id="itinerary-container">
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="itinerary">Itinerary</button>
+    <button class="tab-btn" data-tab="costs">Costs</button>
+  </nav>
+
+  <main class="itinerary-timeline tab-content active" id="itinerary-container">
     <!-- Timeline items will be injected here by app.js -->
+  </main>
+
+  <main class="costs-dashboard tab-content" id="costs-container" style="display: none;">
+    <!-- Cost breakdown will be injected here by app.js -->
   </main>
 
   <button class="fab" id="add-event-btn" aria-label="Add Event">
@@ -82,9 +91,15 @@
         <input type="url" id="event-map" placeholder="https://maps.google.com/?q=...">
       </div>
 
-      <div class="form-group">
-        <label for="event-contacts">Contacts / Extra Info</label>
-        <input type="text" id="event-contacts" placeholder="e.g. Phone: +30 123456">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event-contacts">Contacts / Extra Info</label>
+          <input type="text" id="event-contacts" placeholder="e.g. Phone: +30 123456">
+        </div>
+        <div class="form-group">
+          <label for="event-cost">Cost (€)</label>
+          <input type="number" id="event-cost" step="0.01" placeholder="0.00">
+        </div>
       </div>
 
       <div class="form-group">
