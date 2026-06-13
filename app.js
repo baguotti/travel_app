@@ -278,11 +278,35 @@ document.addEventListener('DOMContentLoaded', () => {
   renderEvents();
 });
 
-// Register Service Worker for PWA
+// Register Service Worker for PWA and handle automatic updates
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker registered', reg))
+      .then(reg => {
+        console.log('Service Worker registered', reg);
+        
+        // Check for updates periodically or on load
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'activated') {
+                console.log('New update activated. Reloading...');
+                window.location.reload();
+              }
+            });
+          }
+        });
+      })
       .catch(err => console.error('Service Worker registration failed', err));
+
+    // Listen for controller changes to reload immediately
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
   });
 }
